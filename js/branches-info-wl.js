@@ -20,6 +20,13 @@ export var wlBranches = {
     id: "146034",
     category: "",
   },
+  fr: {
+    name: "Français",
+    head: "Dans d’autres langues",
+    url: "https://fondationscp.wikidot.com/",
+    id: "464696",
+    category: "vagabonds:",
+  },
   jp: {
     name: "日本語",
     head: "他言語版",
