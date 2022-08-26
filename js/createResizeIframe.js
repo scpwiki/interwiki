@@ -20,8 +20,7 @@ export function createResizeIframe(site, frameId) {
 
   if (frameId[0] !== "/") frameId = "/" + frameId;
 
-  return debounce(function (receivedData) {
-    if (receivedData) flags.showInterwiki = true;
+  return debounce(function () {
     if (flags.showInterwiki) {
       // Measure from the top of the document to the iframe container to get
       // the document height - this takes into account inner margins, unlike
@@ -54,8 +53,6 @@ function debounce(func, wait) {
   var timeout = 0;
   return function () {
     clearTimeout(timeout);
-    timeout = setTimeout(function () {
-      func(arguments);
-    }, wait);
+    timeout = setTimeout(func, wait);
   };
 }
