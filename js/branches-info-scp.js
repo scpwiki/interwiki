@@ -79,8 +79,8 @@ export var scpBranches = {
   ru: {
     name: "Русский",
     head: "На других языках",
-    url: "http://scp-ru.wikidot.com/",
-    id: "169125",
+    url: "https://scpfoundation.net/",
+    id: "",
     category: "",
   },
   es: {
