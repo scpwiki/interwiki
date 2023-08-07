@@ -69,8 +69,8 @@ export function cromLookup(currentBranch, branches, fullname, addLink) {
  * @param {String} url
  */
 function normaliseUrl(url) {
-  if (url.indexOf(".wikidot.com") === -1) {
-    throw new Error("Crom requires wikidot.com branch URLs (" + url + ")");
+  if (url.indexOf(".wikidot.com") === -1 && url.indexOf("scpfoundation.net") === -1) {
+    throw new Error("Crom requires wikidot.com or scpfoundation.net branch URLs (" + url + ")");
   }
   return url.replace(/^https:/, "http:");
 }
