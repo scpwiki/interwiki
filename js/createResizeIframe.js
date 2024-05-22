@@ -5,14 +5,15 @@
 export var flags = { showInterwiki: false };
 
 /**
- * Constructs and returns a function that, when called, resizes the current
- * iframes to match its contents. The function is debounced.
+ * Constructs and returns a function that, when called, resizes the current iframes to match its contents. The function is debounced.
  *
  * @param {String} site - The base URL of the site.
- * @param {String} frameId - The last segment of the URL of the interwiki
- * iframe, used by Wikidot to identify it when resizing it.
+ * @param {String} frameId - The last segment of the URL of the interwiki iframe, used by Wikidot to identify it when resizing it.
+ * @param {Number=} [debounceTime] - Debounce delay to stagger repeated calls to the resizer. Defaults to 750 ms.
  */
-export function createResizeIframe(site, frameId) {
+export function createResizeIframe(site, frameId, debounceTime) {
+  if (debounceTime == null) debounceTime = 750;
+
   var container = document.getElementById("resizer-container");
   if (container == null) {
     container = document.createElement("div");
@@ -43,7 +44,7 @@ export function createResizeIframe(site, frameId) {
         height +
         frameId;
     }
-  }, 750);
+  }, debounceTime);
 }
 
 /**
