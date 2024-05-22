@@ -55,7 +55,7 @@ export function debounce(func, wait) {
   return function () {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-      func(arguments);
+      func.apply(null, arguments);
     }, wait);
   };
 }
