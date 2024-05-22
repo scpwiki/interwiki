@@ -50,7 +50,7 @@ export function createResizeIframe(site, frameId) {
  * @param {Number} wait - The number of milliseconds to wait after any call
  * to the debounced function before executing it.
  */
-function debounce(func, wait) {
+export function debounce(func, wait) {
   var timeout = 0;
   return function () {
     clearTimeout(timeout);
