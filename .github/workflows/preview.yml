@@ -15,6 +15,7 @@ on:
 concurrency: preview-${{ github.ref }}
 jobs:
   deploy-preview:
+    if: github.repository == 'scpwiki/interwiki'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
