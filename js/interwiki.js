@@ -1,11 +1,14 @@
-import { createResizeIframe } from "./createResizeIframe";
-import { addTranslations } from "./links";
 import { addExternalStyle, createRequestStyleChange } from "./styles";
 
+import { ResizeObserver } from "@juggle/resize-observer";
+import { addTranslations } from "./links";
 import { scpBranches } from "./branches-info-scp";
 import { wlBranches } from "./branches-info-wl";
 
-import { ResizeObserver } from "@juggle/resize-observer";
+/**
+ * @type {import("./createResizeIframe").createResizeIframe}
+ */
+var createResizeIframe = window.createResizeIframe;
 
 addEventListener("DOMContentLoaded", function () {
   var community = getQueryString(location.search, "community");
