@@ -14,6 +14,11 @@ export var flags = { showInterwiki: false };
  */
 export function createResizeIframe(site, frameId) {
   var container = document.getElementById("resizer-container");
+  if (container == null) {
+    container = document.createElement("div");
+    container.id = "resizer-container";
+    document.body.appendChild(container);
+  }
   var resizer = document.createElement("iframe");
   resizer.style.display = "none";
   container.appendChild(resizer);
