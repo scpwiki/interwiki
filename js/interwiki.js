@@ -111,7 +111,10 @@ export function createInterwiki(
   var resize = createResizeIframe(site, frameId);
 
   // Resize frame when size changes are detected
-  var observer = new ResizeObserver(resize);
+  var observer = new ResizeObserver(function () {
+    // Only resize if there's at least one translation link
+    if (document.getElementsByClassName("menu-item").length) resize();
+  });
   observer.observe(document.documentElement);
 
   // Construct the function that will be called internally and by
