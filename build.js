@@ -17,7 +17,7 @@ esbuild.buildSync({
 });
 
 esbuild.buildSync({
-  entryPoints: ["js/createResizeIframe.js"],
+  entryPoints: ["js/resizeIframe.js"],
   outdir: "dist",
   bundle: true,
   minify: !dev,

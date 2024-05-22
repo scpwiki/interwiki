@@ -6,9 +6,9 @@ import { scpBranches } from "./branches-info-scp";
 import { wlBranches } from "./branches-info-wl";
 
 /**
- * @type {import("./createResizeIframe").createResizeIframe}
+ * @type {import("./resizeIframe").createResizeIframe}
  */
-var createResizeIframe = window.createResizeIframe;
+var createResizeIframe = window.resizeIframe.createResizeIframe;
 
 addEventListener("DOMContentLoaded", function () {
   var community = getQueryString(location.search, "community");
