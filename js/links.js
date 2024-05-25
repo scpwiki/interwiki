@@ -1,4 +1,3 @@
-import { flags } from "./createResizeIframe";
 import { cromLookup } from "./lookup/crom";
 
 // Configure which lookup method is currently active
@@ -58,16 +57,7 @@ export function addTranslations(branches, currentBranchLang, pagename) {
   var header = document.querySelector(".heading p");
   header.innerText = currentBranch.head;
 
-  lookupMethod(
-    currentBranch,
-    branches,
-    pagename,
-    function (pageUrl, branchName, branchLang, isOriginal) {
-      addTranslationLink(pageUrl, branchName, branchLang, isOriginal);
-      // Indicate that data has been received
-      flags.showInterwiki = true;
-    }
-  );
+  lookupMethod(currentBranch, branches, pagename, addTranslationLink);
 }
 
 /**
