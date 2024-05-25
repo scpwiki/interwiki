@@ -48,4 +48,11 @@ export var wlBranches = {
     id: "4593099",
     category: "",
   },
+  ru: {
+    name: "Русский",
+    head: "На других языках",
+    url: "https://scpfoundation.net/",
+    id: "",
+    category: "wl:",
+  },
 };
