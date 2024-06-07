@@ -53,9 +53,11 @@ export function createResizeIframe(site, frameId, debounceTime) {
 export function debounce(func, wait) {
   var timeout = 0;
   return function () {
+    var context = this;
+    var args = arguments;
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-      func.apply(null, arguments);
+      func.apply(context, args);
     }, wait);
   };
 }
