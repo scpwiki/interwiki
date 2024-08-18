@@ -58,7 +58,7 @@ export var scpBranches = {
   ko: {
     name: "한국어",
     head: "다른 언어",
-    url: "http://scpko.wikidot.com/",
+    url: "https://scpko.wikidot.com/",
     id: "486864",
     category: "",
   },
