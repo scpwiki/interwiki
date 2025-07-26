@@ -7,7 +7,7 @@ export var scpBranches = {
     category: "",
   },
   cs: {
-    name: "Česky",
+    name: "Český",
     head: "V jiných jazycích",
     url: "https://scp-cs.wikidot.com/",
     id: "2060442",
