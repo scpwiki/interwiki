@@ -22,6 +22,12 @@ export function createResizeIframe(site, frameId, debounceTime) {
   // Trim leading slashes from frame ID
   frameId = frameId.replace(/^\/+/, "");
 
+  // Did the last call to resize() actually succeed?
+  var delivered = false;
+  resizer.addEventListener("load", function () {
+    if (resizer.src !== "about:blank") delivered = true;
+  });
+
   var resize = function (height) {
     if (height == null) {
       // Measure from the top of the document to the iframe container to get the document height
@@ -38,7 +44,10 @@ export function createResizeIframe(site, frameId, debounceTime) {
       height +
       "/" +
       frameId;
-    if (resizer.src !== newResizerSrc) {
+
+    // Reload if the target changed or if the last change failed (in which case resizer.src is set to a failed URL that doesn't represent the current height)
+    if (resizer.src !== newResizerSrc || !delivered) {
+      delivered = false;
       resizer.src = "about:blank";
       setTimeout(function () {
         resizer.src = newResizerSrc;
