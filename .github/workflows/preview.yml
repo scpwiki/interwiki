@@ -1,4 +1,5 @@
-name: preview PR
+name: Preview PR
+
 on:
   pull_request:
     types:
@@ -12,18 +13,23 @@ on:
       - js/**
       - build.js
       - .github/workflows/preview.yml
+
 concurrency: preview-${{ github.ref }}
 jobs:
   deploy-preview:
     if: github.repository == 'scpwiki/interwiki'
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
+
       - name: Install
         run: npm install
+
       - name: Build
         run: npm run build
+
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
