@@ -1,12 +1,54 @@
 /**
+ * This script is used to resize iframes to match their contents. It is intended for use in the interwiki iframe to accommodate different numbers of translations per page, but it can be used to resize any iframe on wikidot.
+ *
+ * How to use:
+ *
+ * 1. Import this script in the <head> of the page to be used as an iframe:
+ *
+ *    <script src="https://interwiki.scpwiki.com/resizeIframe.js" defer></script>
+ *
+ * 2. Define a dummy resize function to be used before the script loads:
+ *
+ *    window.resize = () => {};
+ *
+ * 3. After load, replace the dummy function with the actual resizer function:
+ *
+ *    addEventListener("load", () => {
+ *      window.resize = window.resizeIframe.createResizeIframe(
+ *        document.referrer,
+ *        location.href.replace(/^.*\//, "/"),
+ *        100,
+ *      );
+ *    });
+ *
+ * 4. Whenever you want to resize the iframe, call the function:
+ *
+ *    window.resize(); // Auto-resize to match the document height
+ *    window.resize(500); // Resize to 500px
+ *    new ResizeObserver(() => window.resize()).observe(document.body); // Resize on size change
+ *
+ * 5. If your iframe is defined in a [[html]] block, it already has Wikidot's auto-resizing script.
+ *    Disable it if you need to use this script to control the resizing:
+ *
+ *   document.querySelectorAll(
+ *     "script[src*='common--javascript/html-block-iframe.js']"
+ *   ).forEach(s => s.remove())
+ *   addEventListener("load", () => {
+ *     document.querySelectorAll(
+ *       "iframe[src*='common--javascript/resize-iframe.html']"
+ *     ).forEach(i => i.remove())
+ *   });
+ */
+
+/**
  * Constructs and returns a function that, when called, resizes the current iframes to match its contents or the given height. The function is debounced.
  *
  * @param {String} site - The base URL of the site.
  * @param {String} frameId - The last segment of the URL of the interwiki iframe, used by Wikidot to identify it when resizing it.
  * @param {Number=} [debounceTime] - Debounce delay to stagger repeated calls to the resizer. Defaults to 750 ms.
- * @returns {((height: Number=) => void)} Debounced function that resizes the iframe. Optional height parameter sets the height of the iframe; if not set, the height is calculated from the document.
+ * @returns {((height: Number=) => void)} Debounced function that resizes the iframe. Optional height parameter sets the height of the iframe in pixels; if not set, the height is calculated from the document. Float and string values are OK (e.g. 10.5 and "10.5").
  */
-export function createResizeIframe(site, frameId, debounceTime) {
+function createResizeIframe(site, frameId, debounceTime) {
   if (debounceTime == null) debounceTime = 750;
 
   var container = document.getElementById("resizer-container");
@@ -56,7 +98,7 @@ export function createResizeIframe(site, frameId, debounceTime) {
  * @param {Number} wait - The number of milliseconds to wait after any call to the debounced function before executing it.
  * @returns {Function} The debounced function.
  */
-export function debounce(func, wait) {
+function debounce(func, wait) {
   var timeout = 0;
   return function () {
     var context = this;
@@ -67,3 +109,8 @@ export function debounce(func, wait) {
     }, wait);
   };
 }
+
+window.resizeIframe = {
+  createResizeIframe: createResizeIframe,
+  debounce: debounce,
+};

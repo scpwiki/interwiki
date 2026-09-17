@@ -6,7 +6,9 @@ import { scpBranches } from "./branches-info-scp";
 import { wlBranches } from "./branches-info-wl";
 
 /**
- * @type {import("./resizeIframe").createResizeIframe}
+ * Provided globally by resizeIframe.js
+ *
+ * @type {(site: String, frameId: String, debounceTime?: Number) => ((height?: Number) => void)}
  */
 var createResizeIframe = window.resizeIframe.createResizeIframe;
 
