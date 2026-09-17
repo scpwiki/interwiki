@@ -25,6 +25,7 @@
  *
  *    window.resize(); // Auto-resize to match the document height
  *    window.resize(500); // Resize to 500px
+ *    new ResizeObserver(() => window.resize()).observe(document.body); // Resize on size change
  *
  * 5. If your iframe is defined in a [[html]] block, it already has Wikidot's auto-resizing script.
  *    Disable it if you need to use this script to control the resizing:
